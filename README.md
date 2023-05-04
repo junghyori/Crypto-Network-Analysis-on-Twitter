@@ -11,7 +11,7 @@ Use CoinMarketCap API to scrape the top 100 coin names by market cap. Use coin n
 ### Network from the Data
 The data was processed to construct a multilayer network consisting of two layers: hashtag-hashtag and crypto-crypto. The hashtag-hashtag layer represents connections between hashtags used in tweets, while the crypto-crypto layer represents connections between cryptocurrencies mentioned in tweets.
 
-## Model/Algorithm/Method
+## Method
 ### Data Preprocessing
 NLTK library is used for text processing including tokenizing and lemmatizing. Other preprocessing is performed including converting to lowercase, removing punctuation, handling negation cues, removing stop words and replacing contractions with their expanded form. Some meaningless words were also removed for data cleaning and only english data were used by filtering non-english text with Langdetect library. After the whole process, 59097 data points were finally used for analysis. 
 
