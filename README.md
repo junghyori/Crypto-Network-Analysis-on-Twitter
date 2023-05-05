@@ -1,29 +1,77 @@
-# Multilayer Network Analysis : Cryptocurrency Communities on Twitter
+# Analysing Cryptocurrency Communities on Twitter : A Multilayer Network Study
 
-This project involves the analysis of cryptocurrency communities on Twitter using a multilayer network approach. The study investigates the interplay between the hashtag-hashtag layer and the crypto-crypto layer, and explores how these layers are related to network centrality and community detection. The results provide valuable insights for investors, traders, and businesses looking to make informed decisions in the cryptocurrency market.
+This project involves the analysis of cryptocurrency communities on Twitter using a multilayer network approach. The study investigates the interplay between the hashtag-hashtag layer and the crypto-crypto layer, and explores how these layers are related to network centrality and community detection. The results provide valuable insights for investors, traders, and businesses looking to make informed decisions in the cryptocurrency market. This README file does not cover the details on the method and result. Please check the details on the project and analysis result in the report.
 
-This README file does not cover the details on the method and result. You can check the details on the project and analysis result [here.](https://drive.google.com/file/d/1DeQi6W5oK2T-9IzXAYFzRg1YOmjRgwPC/view?usp=sharing)
+-----------------------------------------------------------------------------------
+## README Contents:
+    - Folder structure
+    - How to use this folder
+    - File descriptions
+-----------------------------------------------------------------------------------
+## Folder structure:
 
-## Data
-### Data Scraping
-Use CoinMarketCap API to scrape the top 100 coin names by market cap. Use coin names as keywords to scrape related social media data. Use TwitterAPI to scrape the data. End with 79,099 data points. Define keywords for each coin (e.g., 'Bitcoin': ['bitcoin', 'btc', 'bitcoinprice']).
+This folder contains 8 files, of the formats .ipynb, .csv, .pdf, .md and is structured as follows. The number beside each file name is referred back to in the descriptions of each file given in the 'file description' 
 
-### Network from the Data
-The data was processed to construct a multilayer network consisting of two layers: hashtag-hashtag and crypto-crypto. The hashtag-hashtag layer represents connections between hashtags used in tweets, while the crypto-crypto layer represents connections between cryptocurrencies mentioned in tweets.
+    (1) 1_Data Scraping.ipynb
+    (2) 2_Data Preprocessing.ipynb
+    (3) 3_Multilayer Network Analysis.ipynb
+    (4) 4_Centrality Correlation Analysis.ipynb
+    (5) twitter_concat.csv
+    (6) output_report
+    (7) output_ppt
+    README.md 
+ 
+-----------------------------------------------------------------------------------
+## How to use this folder (to reproduce results discussed in the accompanying report):
 
-## Method
-### Data Preprocessing
-NLTK library is used for text processing including tokenizing and lemmatizing. Other preprocessing is performed including converting to lowercase, removing punctuation, handling negation cues, removing stop words and replacing contractions with their expanded form. Some meaningless words were also removed for data cleaning and only english data were used by filtering non-english text with Langdetect library. After the whole process, 59097 data points were finally used for analysis. 
+There are 4 notebooks, which are all implementations of experiments discussed in the research, including data scraping and processing, building and analysing the network.
 
-### Network Analysis
-- Modelling: The multilayer network was modeled using the Py3Plex and NetworkX library in Python.
+The running procedures starts from the 1_Data Scraping.ipynb > 2_Data Preprocessing.ipynb > 3_Multilayer Network Analysis.ipynb > 4_Centrality Correlation Analysis.ipynb. To replicate results discussed in the research, it will suffice to run the notebooks with necessary dependencies installed except for the data scraping, someone who want to replicate it should use their own API keys.
 
-- Centrality: The study computed centrality metrics for each layer of the network, including degree centrality, betweenness centrality, and eigenvector centrality. These metrics were used to identify the most important and influential nodes in the network.
+-----------------------------------------------------------------------------------
+## File descriptions:
 
-- Community Detection: Community detection was performed to identify groups of nodes that were more densely connected within each layer. The Louvain algorithm was used to detect communities in the network.
+    (1)   File name: 1_Data Scraping.ipynb
+          File type: Jupyter notebook
+          File contents: This file contains data scraping with API from CoinMarketCap and Twitter. CoinMarketCap API is used to
+          scrape the top 100 coin names by market cap. These coin names are used as keywords to scrape related social media data
+          using TwitterAPI which end with 79,099 data points. 
+          
+    (2)   File name: data_processing.ipynb
+          File type: Jupyter notebook
+          File contents: This file imports data from the (1) as 'twitter_concat.csv'. The main function in this file is text
+          processing. This includes converting to lowercase, removing punctuation, handling negation cues, removing stop words and
+          replacing contractions with their expanded form, tokenizing and lemmatizing with NLTK library. Some meaningless words
+          were also removed for data cleaning and only english data were used by filtering non-english text with Langdetect
+          library. After the whole process, 59097 data points were finally used for the analysis.
+    
+    (3)   File name: 3_Multilayer Network Analysis.ipynb
+          File type: Jupyter notebook
+          File contents: This file imports preprocessed data from (2) and performs modelling: The multilayer network was modeled
+          using the Py3Plex and NetworkX library in Python. There are mainly 3 parts: Multilayer Network (the whole network),
+          Hashtag-Hashtag Layer and Crypto-Crypto Layer. For each part, centrality metrics were computed for each layer of the
+          network and community detection was performed.
+         
+    (4)   File name: 4_Centrality Correlation Analysis.ipynb
+          File type: Jupyter notebook
+          File contents: This file imports centrality measures in Crypto-Crypto Layer calculated from (3) and investigated the
+          relationship between network centrality metrics and other metrics including sentiment scores, market capitalization and
+          tweet count for each cryptocurrency. Sentiment analysis was performed with the TextBlob library. Correlation analysis
+          was performed to examine the relationship between these metrics and shown in the heatmap.
+                 
+    (5)   File name: twitter_concat.csv
+          File type: CSV
+          File contents: This is the key dataset used in the study generated from (1).
+          
+    (6)   File name: output_report.pdf
+          File type: pdf
+          File contents: This is the report for the whole analysis process including introduction, related work, method, result and conclusion
+          with every details and visualisation. It is around 5000 words report and formated with Latex.
 
-### Network Centrality Correlation Analysis
-The study investigated the relationship between network centrality metrics and other metrics including sentiment scores, market capitalization and tweet count for each cryptocurrency. Sentiment analysis was performed with the TextBlob library. Correlation analysis was performed to examine the relationship between these metrics and shown in the heatmap.
+    (7)   File name: output_ppt.pdf
+          File type: pdf
+          File contents: This is the presentation version of report in (6). Still, for better understanding of the whole background of the study,
+          checking report in (6) is highly recommended.
 
 ## Acknowledgements
 This project was completed as part of MSIN0074 Network Analysis module of UCL. Special thanks to all the supervisors for the guidance. If you have any questions or comments, feel free to contact me at gracejeonghyeon@gmail.com!
